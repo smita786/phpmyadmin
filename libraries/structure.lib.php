@@ -321,6 +321,10 @@ function PMA_getHtmlForCheckAllTables($pmaThemeImage, $text_dir,
             . __('Replace table prefix') . '</option>' . "\n";
         $html_output .= '<option value="copy_tbl_change_prefix" >'
             . __('Copy table with prefix') . '</option>' . "\n";
+        $html_output .= '<option value="sync_unique_columns_central_list" >'
+            . __('Sync with central columns list') . '</option>' . "\n";
+        $html_output .= '<option value="delete_unique_columns_central_list" >'
+            . __('remove from central columns list') . '</option>' . "\n";
     }
     $html_output .= '</select>'
         . implode("\n", $hidden_fields) . "\n";

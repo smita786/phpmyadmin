@@ -285,3 +285,17 @@ CREATE TABLE IF NOT EXISTS `pma__navigationhiding` (
 ) 
   COMMENT='Hidden items of navigation tree'
   DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pma__central_columns`
+--
+
+CREATE TABLE IF NOT EXISTS `pma__central_columns` (
+  `db_name` varchar(64) NOT NULL default '',
+  `column_list` text,
+  PRIMARY KEY (`db_name`)
+)
+  COMMENT='Central list of columns'
+  DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;

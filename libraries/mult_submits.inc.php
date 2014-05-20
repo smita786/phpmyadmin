@@ -84,6 +84,12 @@ if (! empty($submit_mult)
                 include 'db_export.php';
                 exit;
                 break;
+            case 'sync_unique_columns_central_list':
+                include 'db_sync_central_columns.php';
+                break;
+            case 'delete_unique_columns_central_list':
+                include 'db_sync_central_columns.php';
+                break;
             } // end switch
         }
     } elseif (isset($selected_fld) && !empty($selected_fld)) {
@@ -249,6 +255,16 @@ if (!empty($submit_mult) && !empty($what)) {
         $GLOBALS['pma']->databases->build();
     }
 } else {
-    $message = PMA_Message::success(__('No change'));
+    if ($submit_mult == 'sync_unique_columns_central_list' 
+       || $submit_mult == 'delete_unique_columns_central_list')
+    {
+        if($centralColsError !== TRUE) {
+            $message = $centralColsError;
+        } else {
+            $message = PMA_Message::success(__('Success!'));
+        }
+    } else {
+        $message = PMA_Message::success(__('No change'));
+    }
 }
 ?>
