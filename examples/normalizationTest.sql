@@ -744,3 +744,29 @@ INSERT INTO `recepies` (`name`, `slug`, `image_loc`, `description`, `serves`, `i
 ('samosa', 'samosa', 'recepies.image_loc.a4aa8fc132350065.73616d6f73612e6a7067.jpg', 'A fried or baked pastry with a savory filling, such as spiced potatoes, onions, peas etc.', '10 samosas', '[["maida", "1", "cup"], ["oil", "2", "tbsp"], ["salt", "2", "tbsp"], ["boiled potato", "2", "pieces"], ["boiled peas", "1/4", "cup"], ["grated ginger", "1/8", "tbsp"], ["red chilli powder", "1/2", "tbsp"], ["garam masala", "1/4", "tbsp"]]', '30 mins', 1, 1, 0, 0, NULL, NULL),
 ('sauce fruit salad', 'sauce-fruit-salad', 'recepies.image_loc.b9d561174eda9d01.73617563792d66727569742e6a7067.jpg', 'Layers of fresh fruits are soaked a citrusy sauce and become a refreshing side dish or dessert on a hot day.', '4-6', '[["fresh pinapple", "2", "cup"], ["peeled mango", "1", "cup"], ["banana", "1", "cup"], ["orange", "1", "cup"], ["sugar", "1", "tbsp"], ["fresh lime", "1", "tbsp"], ["cinnamon", "1/8", "tsp"], [" fresh orange juice", "2/3", "cup"], [" fresh lemon juice", "1/3", "cup"], ["toasted coconut", "1", "cup"], ["grated orange zest", "1/2", "tsp"], ["grated lemon zest", "1/2", "tsp"], ["blueberries", "2", "cup"], ["kiwi", "3", "pieces"], ["grapes", "1", "cup"], ["strawberries", "1", "cup"]]', '15 mins', 1, 1, 0, 0, NULL, NULL),
 ('veg biryani', 'veg-biryani', 'recepies.image_loc.bf143b76779be65f.62697279616e692e6a7067.jpg', 'delicious, flavourful, rich and exotic rice dish which looks colorful with assorted vegetables and spiced to give a nice fragrance around.', '4 plates', '[["rice", "1.5", "cup"], ["bayleaf", "1", ""], ["cinnamon", "1", "pieces"], ["salt", "to taste", ""], ["cardamom", "1", ""], ["vegetable like carrots , beans , capsicum , peas , potatos , cauliflower", "2", "cup"], ["oil", "2", "tbsp"], ["cumin seeds", "1/2", "tsp"], ["onion", "3/4", "cup"], ["green chilli and red chilli", "2", "tbsp"], ["Turmeric powder", "1/4", "tsp"], ["chopped coriander ", "2", "tsp"], ["garam masala", "1/2", "tsp"], ["tomato", "1", "cup"], ["paneer", "1/4", "cup"], ["milk", "1/4", "cup"], ["ghee", "2", "tbsp"]]', '30 mins', 1, 1, 0, 0, NULL, NULL);
+
+/*table is in 2NF but not in 3NF as genere_type depends on genere_id*/
+CREATE TABLE IF NOT EXISTS `book_details` (
+ `book_id` int(11) NOT NULL AUTO_INCREMENT,
+ `genere_id` int(11) NOT NULL,
+ `genere_type` varchar(64) NOT NULL,
+ `price` float NOT NULL,
+ PRIMARY KEY (`book_id`)
+);
+
+/*Table is nither in 2NF nor in 3NF. as following dependency exist
+(OwnerLastName, OwnerFirstName) -> OwnerEmail
+(OwnerLastName, OwnerFirstName) -> OwnerPhone
+PetBreed -> PetType
+*/
+CREATE TABLE `VetOffice` (
+ `petName` varchar(64) NOT NULL,
+ `petBreed` varchar(64) NOT NULL,
+ `petType` varchar(64) NOT NULL,
+ `petDOB` date NOT NULL,
+ `ownerLastName` varchar(64) NOT NULL,
+ `ownerFirstName` varchar(64) NOT NULL,
+ `ownerPhone` int(12) NOT NULL,
+ `ownerEmail` varchar(64) NOT NULL,
+ PRIMARY KEY (`petName`,`ownerLastName`,`ownerFirstName`)
+);
