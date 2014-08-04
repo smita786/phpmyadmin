@@ -770,3 +770,27 @@ CREATE TABLE `VetOffice` (
  `ownerEmail` varchar(64) NOT NULL,
  PRIMARY KEY (`petName`,`ownerLastName`,`ownerFirstName`)
 );
+
+/*
+Table is neither in 2NF nor in 3NF. Among the tables formed after 2NF, More than one of them are not in 3NF.
+in above example table 'VetOffice', only one of table formed after 2NF was not in 3NF.
+Follwing dependencies exist:
+project_code -> project_title,project_manager,project_budget,department_no,dpartment_name
+employee_no -> employee_name,employee_zip,employee_city
+department_no -> dpartment_name
+employee_zip -> employee_city
+*/
+CREATE TABLE `projects_detail` (
+ `project_code` int(10) NOT NULL,
+ `project_title` varchar(64) NOT NULL,
+ `project_manager` varchar(64) NOT NULL,
+ `project_budget` int(10) NOT NULL,
+ `department_no` int(10) NOT NULL,
+ `dpartment_name` varchar(64) NOT NULL,
+ `employee_no` int(10) NOT NULL,
+ `employee_name` varchar(64) NOT NULL,
+ `employee_zip` varchar(64) NOT NULL,
+ `employee_city` varchar(64) NOT NULL,
+ `hourly_rate` int(10) NOT NULL,
+ PRIMARY KEY (`project_code`,`employee_no`)
+);
